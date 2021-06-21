@@ -1,0 +1,27 @@
+# Why inline  function needs static storage  class?
+
+> Static inline is used into the header files to provide functions that can be 
+  in-lined to without issueing warnings
+
+//https://stackoverflow.com/questions/12836171/difference-between-an-inline-function-and-static-inline-function
+
+> The non-static inline function declaration refers to the same function in 
+  every translation unit (source file) that uses it.
+> The One Definition Rule requires that the body of the function definition is 
+  identical in every TU that contains it, with a longish definition of "identical". 
+  This is usually satisfied provided that the source files all use the same header, 
+  and provided that the function doesn't use any global names with internal linkage 
+  (including static functions) or any macros that are defined differently in 
+  different TUs.
+> The static inline function declaration refers to a different function in each 
+  translation unit, that just so happens to have the same name. It can use static 
+  global names or macros that are different in different TUs, in which case the 
+  function might behave differently in the different TUs, even though its definition 
+  in the header file "looks the same".
+
+> Because of this difference, if the function contains any static local variables then 
+  it behaves differently according to whether it is static or not. If it is static then 
+  each TU has its own version of the function and hence its own copy of the static local 
+  variables. If it's inline only, then there is only one copy of the static local
+  variables used by all TUs.
+
