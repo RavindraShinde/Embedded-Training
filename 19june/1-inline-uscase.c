@@ -2,12 +2,16 @@
 // not completed
 #include <stdio.h>
 
+#define myfunc(x) (x)*100
+
 inline static int myfunction(int a){
 	return a*100;
 }
 
 int main()
-{
-	myfunction(10);
+{	
+	printf("inline- %d\n", myfunction(10));
+	printf("mcro- %d\n", myfunc(10));
+
 	return 0;
 }
