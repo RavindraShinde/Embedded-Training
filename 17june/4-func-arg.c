@@ -44,12 +44,14 @@ starting from right most arg, push arg to the stacks
 
 inside function call
 
-1. pre-emble '{'
+1. function return address is stored on to the stack
+2. ebp - base poiner
+   esp - stack pointer
+   eip - instrunctiton pointer
+2. pre-emble '{'
 2. allocate the mem into the stack for the local variables
-3. 
-
-
-
+3. calculations (add, substract)
+4. leave (return address to eip, return value copied from acc)
 
 */
 
